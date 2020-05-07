@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       flash[:success] = "Order Created"
-      render :show
+      redirect_to @order
     else
       flash.now[:errors] = @order.errors.full_messages
       render :new
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
 
   private
 
-  def sub_params
+  def order_params
     params.require(:order).permit(
       :name,
       :phone,

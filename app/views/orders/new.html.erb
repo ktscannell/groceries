@@ -1,2 +1,95 @@
-<h1>Order#new</h1>
-<p>Find me in app/views/order/new.html.erb</p>
+<h1>New Order</h1>
+
+<% if !!flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <p><%= e %></p> <br>
+  <% end %>
+<% end %>
+
+<%= form_with scope: :order, local: true, url: 
+  { controller: 'orders', action: 'create'} do |form| %>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :phone_number %><br>
+    <%= form.text_field :phone %>
+  </p>
+ 
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </p>
+
+  <p>
+    <%= form.label :beverages %><br>
+    <%= form.text_area :beverages %>
+  </p>
+
+  <p>
+    <%= form.label :bakery %><br>
+    <%= form.text_area :bakery %>
+  </p>
+
+  <p>
+    <%= form.label :canned_goods %><br>
+    <%= form.text_area :canned_goods %>
+  </p>
+
+  <p>
+    <%= form.label :dairy %><br>
+    <%= form.text_area :dairy %>
+  </p>
+
+  <p>
+    <%= form.label :dry_goods_and_baking %><br>
+    <%= form.text_area :dry_goods %>
+  </p>
+
+  <p>
+    <%= form.label :frozen_foods %><br>
+    <%= form.text_area :frozen_foods %>
+  </p>
+
+  <p>
+    <%= form.label :meat_and_deli %><br>
+    <%= form.text_area :meat %>
+  </p>
+
+  <p>
+    <%= form.label :produce %><br>
+    <%= form.text_area :produce %>
+  </p>
+
+  <p>
+    <%= form.label :cleaning_supplies %><br>
+    <%= form.text_area :cleaning %>
+  </p>
+
+  <p>
+    <%= form.label :paper_products %><br>
+    <%= form.text_area :paper_goods %>
+  </p>
+
+  <p>
+    <%= form.label :personal_care %><br>
+    <%= form.text_area :personal_care %>
+  </p>
+
+  <p>
+    <%= form.label :other_items %><br>
+    <%= form.text_area :other_items %>
+  </p>
+
+  <p>
+    <%= form.label :any_notes? %><br>
+    <%= form.text_area :notes %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
