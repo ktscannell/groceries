@@ -1,4 +1,5 @@
 <% @order.attributes.each do |attr_name, attr_value| %>
-  <h3><%= attr_name %></h3>
+  <% next if attr_name == "created_at" || attr_name == "updated_at" %>
+  <h3><%= attr_name == "id" ? "Order Number" : attr_name %></h3>
   <p><%= attr_value %></p>
 <% end %>
