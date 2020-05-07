@@ -1,2 +1,4 @@
-<h1>Order#show</h1>
-<p>Find me in app/views/order/show.html.erb</p>
+<% @order.attributes.each do |attr_name, attr_value| %>
+  <h3><%= attr_name %></h3>
+  <p><%= attr_value %></p>
+<% end %>

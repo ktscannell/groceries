@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.all.sort
+    @orders = Order.all.order(created_at: :desc)
     render :index
   end
   
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
       :canned_goods,
       :dairy,
       :dry_goods,
-      :frozen,
+      :frozen_foods,
       :meat,
       :produce,
       :cleaning,
