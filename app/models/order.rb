@@ -32,9 +32,9 @@ class Order < ApplicationRecord
   validates :name, :phone, :email, :service_type, :service_date, 
     :payment_method, presence: true
   validates :substitutions, inclusion: { in: [true, false] }
-  validates :service_date_cannot_be_in_the_past, :service_date_cannot_be_sunday
+  validate :service_date_cannot_be_in_the_past, :service_date_cannot_be_sunday
   validates :service_type, inclusion: { in: ["Curbside Pick Up", "Delivery"] }
-  validates :desired_pick_up_time_with_operating_hours
+  validate :desired_pick_up_time_with_operating_hours
   validates :payment_method, inclusion: { in: ["Debit or Credit Card",
     "In-House Account", "Check", "Cash", "WIC", "SNAP"] }
 
