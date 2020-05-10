@@ -10,32 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_171631) do
+ActiveRecord::Schema.define(version: 2020_05_10_212932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "orders", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "phone", null: false
     t.string "email"
-    t.datetime "pickup"
     t.boolean "substitutions", default: true
-    t.text "beverages"
+    t.text "aisle_five_snacks_and_pop"
     t.text "bakery"
-    t.text "canned_goods"
+    t.text "aisle_one_canned_non_perishables"
     t.text "dairy"
-    t.text "dry_goods"
-    t.text "frozen_foods"
+    t.text "aisle_three_baking_personal_paper_products"
+    t.text "freezer"
     t.text "meat"
     t.text "produce"
-    t.text "cleaning"
-    t.text "paper_goods"
-    t.text "personal_care"
-    t.text "other"
+    t.text "aisle_four_household_products"
+    t.text "aisle_two_soups_cereal_ethnic_hot_beverages"
+    t.text "other_medicine_etc"
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "area_code"
+    t.string "phone_number"
+    t.string "service_type"
+    t.date "service_date"
+    t.time "desired_pick_up_time"
+    t.string "payment_method"
   end
 
 end
