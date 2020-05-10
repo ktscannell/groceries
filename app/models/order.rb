@@ -31,7 +31,7 @@
 class Order < ApplicationRecord
   validates :name, :phone, :email, :service_type, :service_date, 
     :payment_method, presence: true
-  validates :substitutions, inclusion: { in: [true, false]}
+  validates :substitutions, inclusion: { in: [true, false] }
   validates :service_date_cannot_be_in_the_past, :service_date_cannot_be_sunday
   validates :service_type, inclusion: { in: ["Curbside Pick Up", "Delivery"] }
   validates :desired_pick_up_time_with_operating_hours
