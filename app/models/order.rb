@@ -45,7 +45,9 @@ class Order < ApplicationRecord
     'WIC',
     'SNAP'
   ] }
-  
+  validates :phone_number, phone: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+
   private
 
   def service_date_cannot_be_in_the_past
@@ -61,7 +63,7 @@ class Order < ApplicationRecord
   end
 
   def desired_pick_up_time_with_operating_hours
-    unless desired_pick_up_time.hour < 8 || desired_pick_up_time.hour > 17
+    unless desired_pick_up_time.hour >= 8 || desired_pick_up_time.hour < 18
       return
     end
 
