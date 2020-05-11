@@ -6,8 +6,7 @@
   <% end %>
 <% end %>
 
-<%= form_with scope: :order, local: true, url: 
-  { controller: 'orders', action: 'create'} do |form| %>
+<%= form_with model: @order do |form| %>
 
   <p>
     <%= form.label :name %><br>

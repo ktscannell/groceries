@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
     @orders = Order.all.order(created_at: :desc)
     render :index
   end
-  
+
   def show
     @order = Order.find(params[:id])
     render :show
@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      flash[:success] = "Order Created"
+      flash[:success] = 'Thank you for your order! Remember your order number'
       redirect_to @order
     else
       flash.now[:errors] = @order.errors.full_messages
@@ -29,23 +29,26 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(
-      :name,
-      :phone,
+      :first_name,
+      :last_name,
       :email,
-      :pickup,
+      :phone_number,
+      :service_type,
+      :service_date,
+      :desired_pick_up_time,
+      :payment_method,
       :substitutions,
-      :beverages,
-      :bakery,
-      :canned_goods,
       :dairy,
-      :dry_goods,
-      :frozen_foods,
       :meat,
+      :aisle_one_canned_non_perishables,
+      :aisle_two_soups_cereal_ethnic_hot_beverages,
+      :aisle_three_baking_personal_paper_products,
+      :aisle_four_household_products,
+      :aisle_five_snacks_and_pop,
       :produce,
-      :cleaning,
-      :paper_goods,
-      :personal_care,
-      :other,
+      :freezer,
+      :bakery,
+      :other_medicine_etc,
       :notes
     )
   end

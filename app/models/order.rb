@@ -45,7 +45,7 @@ class Order < ApplicationRecord
     'WIC',
     'SNAP'
   ] }
-  validates :phone_number, phone: true
+  validates :phone_number, phone: { possible: true, countries: :us }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   private
