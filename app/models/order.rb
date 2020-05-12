@@ -31,22 +31,29 @@
 #  payment_method                              :string
 #
 class Order < ApplicationRecord
-  validates :name, :phone, :email, :service_type, :service_date,
-            :payment_method, presence: true
-  validates :substitutions, inclusion: { in: [true, false] }
-  validate :service_date_cannot_be_in_the_past, :service_date_cannot_be_sunday
-  validates :service_type, inclusion: { in: ['Curbside Pick Up', 'Delivery'] }
-  validate :desired_pick_up_time_with_operating_hours
-  validates :payment_method, inclusion: { in: [
+  ALLOWED_PAYMENT_METHODS = [
     'Debit or Credit Card',
     'In-House Account',
     'Check',
     'Cash',
     'WIC',
     'SNAP'
-  ] }
+  ].freeze
+
+  ALLOWED_SERVICE_TYPES = ['Curbside Pick Up', 'Delivery'].freeze
+
+  validates :name, :phone, :email, :service_type, :service_date,
+            :payment_method, presence: true
+
+  validates :substitutions, inclusion: { in: [true, false] }
+  validates :service_type, inclusion: { in: ALLOWED_SERVICE_TYPES }
+  validates :payment_method, inclusion: { in: ALLOWED_PAYMENT_METHODS }
+
   validates :phone_number, phone: { possible: true, countries: :us }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  validate :service_date_cannot_be_in_the_past, :service_date_cannot_be_sunday,
+           :desired_pick_up_time_within_operating_hours
 
   private
 

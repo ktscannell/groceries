@@ -6,89 +6,93 @@
   <% end %>
 <% end %>
 
-<%= form_with model: @order do |form| %>
+<%= form_with model: @order do |f| %>
 
   <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= f.text_field :first_name, placeholder: 'First Name' %>
+    <%= f.text_field :last_name, placeholder: 'Last Name' %>
   </p>
 
   <p>
-    <%= form.label :phone_number %><br>
-    <%= form.text_field :phone %>
+    <%= f.text_field :phone_number, placeholder: 'Phone Number' %>
+    <%= f.text_field :email, placeholder: 'Email' %>
+  </p>
+ 
+  <p><%= f.select :service_type, 
+    options_for_select(@order.class::ALLOWED_SERVICE_TYPES),
+    include_blank: 'Choose Pick Up or Delivery' %></p>
+
+  <p>
+    <%= f.label :service_date, 'Select Service Date:' %>
+    <%= f.date_select :service_date, discard_year: true %>
+  </p>
+
+  <p>
+    <%= f.label :beverages %><br>
+    <%= f.text_area :beverages, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :bakery %><br>
+    <%= f.text_area :bakery, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :canned_goods %><br>
+    <%= f.text_area :canned_goods, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :dairy %><br>
+    <%= f.text_area :dairy, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :dry_goods_and_baking %><br>
+    <%= f.text_area :dry_goods, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :frozen_foods %><br>
+    <%= f.text_area :frozen_foods, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :meat_and_deli %><br>
+    <%= f.text_area :meat, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :produce %><br>
+    <%= f.text_area :produce, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :cleaning_supplies %><br>
+    <%= f.text_area :cleaning, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :paper_products %><br>
+    <%= f.text_area :paper_goods, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :personal_care %><br>
+    <%= f.text_area :personal_care, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :other_items %><br>
+    <%= f.text_area :other, size: '150x6' %>
+  </p>
+
+  <p>
+    <%= f.label :any_notes? %><br>
+    <%= f.text_area :notes, size: '150x6' %>
   </p>
  
   <p>
-    <%= form.label :email %><br>
-    <%= form.text_field :email %>
-  </p>
-
-  <p>
-    <%= form.label :beverages %><br>
-    <%= form.text_area :beverages, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :bakery %><br>
-    <%= form.text_area :bakery, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :canned_goods %><br>
-    <%= form.text_area :canned_goods, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :dairy %><br>
-    <%= form.text_area :dairy, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :dry_goods_and_baking %><br>
-    <%= form.text_area :dry_goods, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :frozen_foods %><br>
-    <%= form.text_area :frozen_foods, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :meat_and_deli %><br>
-    <%= form.text_area :meat, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :produce %><br>
-    <%= form.text_area :produce, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :cleaning_supplies %><br>
-    <%= form.text_area :cleaning, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :paper_products %><br>
-    <%= form.text_area :paper_goods, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :personal_care %><br>
-    <%= form.text_area :personal_care, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :other_items %><br>
-    <%= form.text_area :other, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= form.label :any_notes? %><br>
-    <%= form.text_area :notes, size: '150x6' %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
+    <%= f.submit %>
   </p>
 <% end %>
