@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       flash[:success] = 'Thank you for your order! Remember your order number'
-      redirect_to @order
+      redirect_to order_url(@order)
     else
       flash.now[:errors] = @order.errors.full_messages
       render :new
@@ -52,5 +52,4 @@ class OrdersController < ApplicationController
       :notes
     )
   end
-
 end

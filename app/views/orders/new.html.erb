@@ -6,20 +6,20 @@
   <% end %>
 <% end %>
 
-<%= form_with model: @order do |f| %>
+<%= form_with model: @order, local: true do |f| %>
 
   <p>
     <%= f.text_field :first_name, placeholder: 'First Name' %>
     <%= f.text_field :last_name, placeholder: 'Last Name' %>
     <%= f.text_field :phone_number, placeholder: 'Phone Number' %>
-    <%= f.text_field :email, placeholder: 'Email' %>
+    <%= f.email_field :email, placeholder: 'Email' %>
   </p>
   <p>
     <%= f.label :service_date, 'Select Service Date:' %>
     <%= f.date_select :service_date, discard_year: true %>
-    <%= f.label :desired_service_time, 'Select Desired Pick Up Time:' %>
+    <%= f.label :desired_pick_up_time, 'Select Desired Pick Up Time:' %>
     <%= 
-      f.time_select :desired_service_time, 
+      f.time_select :desired_pick_up_time, 
         ignore_date: true, ampm: true, minute_step: 15 
     %>
   </p>
@@ -36,11 +36,10 @@
         include_blank: 'Choose Payment Method' 
     %>
     <%= 
-      f.select :substitutions, 
-        options_for_select(
-          [['Yes to Substitutions', 'true'], ['No to Substitutions', 'false']]
-        ),
-        include_blank: 'Are Substitutions Okay?' 
+      f.select :substitutions, options_for_select([
+        ['Substitutions are Okay', 'true'], 
+        ['Substitutions are NOT Okay', 'false']
+      ])
     %>
   </p>
 

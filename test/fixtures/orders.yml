@@ -5,7 +5,7 @@
 #  id                                          :bigint           not null, primary key
 #  email                                       :string
 #  substitutions                               :boolean          default(TRUE)
-#  aisle_five_snacks_and_pop                   :text
+#  aisle_five_snacks_pop                       :text
 #  bakery                                      :text
 #  aisle_one_canned_non_perishables            :text
 #  dairy                                       :text
@@ -21,7 +21,6 @@
 #  updated_at                                  :datetime         not null
 #  first_name                                  :string
 #  last_name                                   :string
-#  area_code                                   :string
 #  phone_number                                :string
 #  service_type                                :string
 #  service_date                                :date

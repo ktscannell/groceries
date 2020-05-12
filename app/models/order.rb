@@ -7,7 +7,7 @@
 #  id                                          :bigint           not null, primary key
 #  email                                       :string
 #  substitutions                               :boolean          default(TRUE)
-#  aisle_five_snacks_and_pop                   :text
+#  aisle_five_snacks_pop                       :text
 #  bakery                                      :text
 #  aisle_one_canned_non_perishables            :text
 #  dairy                                       :text
@@ -23,7 +23,6 @@
 #  updated_at                                  :datetime         not null
 #  first_name                                  :string
 #  last_name                                   :string
-#  area_code                                   :string
 #  phone_number                                :string
 #  service_type                                :string
 #  service_date                                :date
@@ -42,25 +41,38 @@ class Order < ApplicationRecord
 
   ALLOWED_SERVICE_TYPES = ['Curbside Pick Up', 'Delivery'].freeze
 
-  validates :name, :phone, :email, :service_type, :service_date,
-            :payment_method, presence: true
+  validates :first_name, :last_name, :phone_number, :service_date, presence: true
 
   validates :substitutions, inclusion: { in: [true, false] }
   validates :service_type, inclusion: { in: ALLOWED_SERVICE_TYPES }
   validates :payment_method, inclusion: { in: ALLOWED_PAYMENT_METHODS }
 
-  validates :phone_number, phone: { possible: true, countries: :us }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validate :service_date_cannot_be_in_the_past, :service_date_cannot_be_sunday,
-           :desired_pick_up_time_within_operating_hours
+           :desired_pick_up_time_within_operating_hours, :valid_phone_number
 
   private
 
+  def desired_pick_up_time_within_operating_hours
+    if desired_pick_up_time.hour >= 8 && desired_pick_up_time.hour < 18
+      return
+    end
+
+    errors.add(:desired_pick_up_time, 'must be between 8 am and 6 pm')
+  end
+
   def service_date_cannot_be_in_the_past
-    return unless service_date.present? && service_date < Time.zone.today
+    return if service_date.present? && service_date >= Time.zone.today
 
     errors.add(:service_date, "can't be in the past")
+  end
+
+  def valid_phone_number
+    full_phone_number = '+1' + phone_number
+    return if Phonelib.valid_for_country?(full_phone_number, 'US')
+
+    errors.add(:phone_number, 'must be 10 digit valid US number')
   end
 
   def service_date_cannot_be_sunday
@@ -69,11 +81,4 @@ class Order < ApplicationRecord
     errors.add(:service_date, 'must be Monday through Saturday')
   end
 
-  def desired_pick_up_time_with_operating_hours
-    unless desired_pick_up_time.hour >= 8 || desired_pick_up_time.hour < 18
-      return
-    end
-
-    errors.add(:desired_pick_up_time, 'must be between 8 am and 6 pm')
-  end
 end

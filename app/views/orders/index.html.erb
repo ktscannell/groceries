@@ -1,7 +1,12 @@
 <ul>
   <% @orders.each do |order| %>
     <li>
-      <%= link_to "Order Number: #{ order.id }, Name: #{ order.name }", order %>
+      <%= 
+        link_to( 
+          "Order Number: #{ order.id }, Name: #{ order.first_name + ' ' + order.last_name }", 
+          order 
+        )
+      %>
     </li>
   <% end %>
 </ul>
