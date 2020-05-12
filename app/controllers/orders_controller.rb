@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
       :aisle_two_soups_cereal_ethnic_hot_beverages,
       :aisle_three_baking_personal_paper_products,
       :aisle_four_household_products,
-      :aisle_five_snacks_and_pop,
+      :aisle_five_snacks_pop,
       :produce,
       :freezer,
       :bakery,

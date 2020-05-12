@@ -11,87 +11,104 @@
   <p>
     <%= f.text_field :first_name, placeholder: 'First Name' %>
     <%= f.text_field :last_name, placeholder: 'Last Name' %>
-  </p>
-
-  <p>
     <%= f.text_field :phone_number, placeholder: 'Phone Number' %>
     <%= f.text_field :email, placeholder: 'Email' %>
   </p>
- 
-  <p><%= f.select :service_type, 
-    options_for_select(@order.class::ALLOWED_SERVICE_TYPES),
-    include_blank: 'Choose Pick Up or Delivery' %></p>
-
   <p>
     <%= f.label :service_date, 'Select Service Date:' %>
     <%= f.date_select :service_date, discard_year: true %>
+    <%= f.label :desired_service_time, 'Select Desired Pick Up Time:' %>
+    <%= 
+      f.time_select :desired_service_time, 
+        ignore_date: true, ampm: true, minute_step: 15 
+    %>
   </p>
 
   <p>
-    <%= f.label :beverages %><br>
-    <%= f.text_area :beverages, size: '150x6' %>
+    <%= 
+      f.select :service_type, 
+        options_for_select(@order.class::ALLOWED_SERVICE_TYPES),
+        include_blank: 'Choose Pick Up or Delivery' 
+    %>
+    <%= 
+      f.select :payment_method, 
+        options_for_select(@order.class::ALLOWED_PAYMENT_METHODS),
+        include_blank: 'Choose Payment Method' 
+    %>
+    <%= 
+      f.select :substitutions, 
+        options_for_select(
+          [['Yes to Substitutions', 'true'], ['No to Substitutions', 'false']]
+        ),
+        include_blank: 'Are Substitutions Okay?' 
+    %>
   </p>
 
   <p>
-    <%= f.label :bakery %><br>
-    <%= f.text_area :bakery, size: '150x6' %>
-  </p>
-
-  <p>
-    <%= f.label :canned_goods %><br>
-    <%= f.text_area :canned_goods, size: '150x6' %>
   </p>
 
   <p>
     <%= f.label :dairy %><br>
-    <%= f.text_area :dairy, size: '150x6' %>
+    <%= f.text_area :dairy, size: '80x4' %>
   </p>
 
   <p>
-    <%= f.label :dry_goods_and_baking %><br>
-    <%= f.text_area :dry_goods, size: '150x6' %>
+    <%= f.label :meat %><br>
+    <%= f.text_area :meat, size: '80x4' %>
   </p>
 
   <p>
-    <%= f.label :frozen_foods %><br>
-    <%= f.text_area :frozen_foods, size: '150x6' %>
+    <%= f.label :aisle_one_canned_non_perishables %><br>
+    <%= f.text_area :aisle_one_canned_non_perishables, size: '80x4' %>
   </p>
 
   <p>
-    <%= f.label :meat_and_deli %><br>
-    <%= f.text_area :meat, size: '150x6' %>
+    <%= f.label :aisle_two_soups_cereal_ethnic_hot_beverages %><br>
+    <%= 
+      f.text_area :aisle_two_soups_cereal_ethnic_hot_beverages, size: '80x4' 
+    %>
+  </p>
+
+  <p>
+    <%= f.label :aisle_three_baking_personal_paper_products %><br>
+    <%= f.text_area :aisle_three_baking_personal_paper_products, size: '80x4' %>
+  </p>
+
+  <p>
+    <%= f.label :aisle_four_household_products %><br>
+    <%= f.text_area :aisle_four_household_products, size: '80x4' %>
+  </p>
+
+  <p>
+    <%= f.label :aisle_five_snacks_pop %><br>
+    <%= f.text_area :aisle_five_snacks_pop, size: '80x4' %>
   </p>
 
   <p>
     <%= f.label :produce %><br>
-    <%= f.text_area :produce, size: '150x6' %>
+    <%= f.text_area :produce, size: '80x4' %>
   </p>
 
   <p>
-    <%= f.label :cleaning_supplies %><br>
-    <%= f.text_area :cleaning, size: '150x6' %>
+    <%= f.label :freezer %><br>
+    <%= f.text_area :freezer, size: '80x4' %>
   </p>
 
   <p>
-    <%= f.label :paper_products %><br>
-    <%= f.text_area :paper_goods, size: '150x6' %>
+    <%= f.label :bakery %><br>
+    <%= f.text_area :bakery, size: '80x4' %>
   </p>
 
   <p>
-    <%= f.label :personal_care %><br>
-    <%= f.text_area :personal_care, size: '150x6' %>
+    <%= f.label :other_medicine_etc %><br>
+    <%= f.text_area :other_medicine_etc, size: '80x4' %>
   </p>
 
   <p>
-    <%= f.label :other_items %><br>
-    <%= f.text_area :other, size: '150x6' %>
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes, size: '80x4' %>
   </p>
 
-  <p>
-    <%= f.label :any_notes? %><br>
-    <%= f.text_area :notes, size: '150x6' %>
-  </p>
- 
   <p>
     <%= f.submit %>
   </p>

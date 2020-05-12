@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    label:
+      order:
+        aisle_one_canned_non_perishables: "Aisle One (Canned, Non-Perishables)"
+        aisle_two_soups_cereal_ethnic_hot_beverages: "Aisle Two (Soups, Cereal, Ethnic, Hot Beverages)"
+        aisle_three_baking_personal_paper_products: "Aisle Three (Baking, Personal, Paper Products)"
+        aisle_four_household_products: "Aisle Four (Household Products)"
+        aisle_five_snacks_pop: "Aisle Five (Snacks, Pop)"
+        other_medicine_etc: "Other (Medicine, etc)"
+        notes: "Special Notes for Your Order"
