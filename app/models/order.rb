@@ -86,7 +86,7 @@ class Order < ApplicationRecord
   end
 
   def service_date_cannot_be_sunday
-    return unless service_date.sunday?
+    return unless service_date&.sunday?
 
     errors.add(:service_date, 'must be Monday through Saturday')
   end
