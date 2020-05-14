@@ -55,9 +55,7 @@ class Order < ApplicationRecord
   private
 
   def desired_pick_up_time_within_operating_hours
-    if desired_pick_up_time.hour >= 8 && desired_pick_up_time.hour < 18
-      return
-    end
+    return if desired_pick_up_time.hour >= 8 && desired_pick_up_time.hour < 18
 
     errors.add(:desired_pick_up_time, 'must be between 8 am and 6 pm')
   end
@@ -80,5 +78,4 @@ class Order < ApplicationRecord
 
     errors.add(:service_date, 'must be Monday through Saturday')
   end
-
 end
