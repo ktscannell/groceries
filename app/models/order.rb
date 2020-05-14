@@ -41,7 +41,8 @@ class Order < ApplicationRecord
 
   ALLOWED_SERVICE_TYPES = ['Curbside Pick Up', 'Delivery'].freeze
 
-  validates :first_name, :last_name, :phone_number, :service_date, presence: true
+  validates :first_name, :last_name, :phone_number, :service_date,
+            presence: true
 
   validates :substitutions, inclusion: { in: [true, false] }
   validates :service_type, inclusion: { in: ALLOWED_SERVICE_TYPES }
