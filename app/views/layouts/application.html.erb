@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <% if !!flash[:errors] %>
+      <ul class="errors-list">
+        <% flash[:errors].each do |e| %>
+          <li><%= e %></li>
+        <% end %>
+      </ul>
+    <% elsif !!flash[:success] %>
+      <p class="success-message"<%= flash[:success] %>></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

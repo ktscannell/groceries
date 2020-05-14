@@ -53,7 +53,18 @@ class Order < ApplicationRecord
   validate :service_date_cannot_be_in_the_past, :service_date_cannot_be_sunday,
            :desired_pick_up_time_within_operating_hours, :valid_phone_number
 
+  before_validation :remove_trailing_whitespace
+
   private
+
+  def remove_trailing_whitespace
+    attributes.each do |key, value|
+      if value.is_a?(String)
+        value = value.chomp.strip
+        self[key] = value
+      end
+    end
+  end
 
   def desired_pick_up_time_within_operating_hours
     return if desired_pick_up_time.hour >= 8 && desired_pick_up_time.hour < 18

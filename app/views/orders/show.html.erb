@@ -1,5 +1,95 @@
-<% @order.attributes.each do |attr_name, attr_value| %>
-  <% next if attr_name == "created_at" || attr_name == "updated_at" %>
-  <h3><%= attr_name == "id" ? "Order Number" : attr_name %></h3>
-  <p><%= attr_value %></p>
-<% end %>
+<div class="order-box">
+  <div class="order-row">
+    <p><strong>Order #: </strong><%= @order.id %></p>
+
+    <p>
+      <strong>Name: </strong><%= @order.first_name + ' ' + @order.last_name %>
+    </p>
+
+    <p><strong>Phone: </strong><%= @order.phone_number %></p>
+
+    <p><strong>Type: </strong><%= @order.service_type %></p>
+
+    <p><strong>Substitutions: </strong>
+    <%= @order.substitutions ? 'ARE OK' : 'ARE NOT OK' %></p>
+  </div>
+
+  <div class="order-row">
+    <p><strong>Payment Method: </strong><%= @order.payment_method %></p>
+
+    <p><strong>Pick Up Date: </strong>
+    <%= @order.service_date.to_formatted_s(:short) %></p>
+
+    <p><strong>Pick Up Time: </strong>
+    <%= @order.desired_pick_up_time.to_s(:time) %></p>
+  </div>
+
+  <div class="order-main">
+    <div class="order-box">
+      <h4>Dairy</h4><div class="order-content"><%= @order.dairy %></div>
+    </div>
+
+    <div class="order-box">
+      <h4>Meat</h4><div class="order-content"><%= @order.meat %></div>
+    </div>
+
+    <div class="order-box">
+      <h4><%= t('helpers.label.order.aisle_one_canned_non_perishables') %></h4>
+      <div class="order-content"><%= @order.aisle_one_canned_non_perishables %></div>
+    </div>
+
+    <div class="order-box">
+      <h4>
+        <%= 
+          t('helpers.label.order.aisle_two_soups_cereal_ethnic_hot_beverages') 
+        %>
+      </h4>
+
+      <div class="order-content"><%=  @order.aisle_two_soups_cereal_ethnic_hot_beverages %></div>
+    </div>
+
+    <div class="order-box">
+      <h4>
+        <%= 
+          t('helpers.label.order.aisle_three_baking_personal_paper_products') 
+        %>
+      </h4>
+
+      <div class="order-content"><%= @order.aisle_three_baking_personal_paper_products %></div>
+    </div>
+
+    <div class="order-box">
+      <h4><%= t('helpers.label.order.aisle_four_household_products') %></h4>
+
+      <div class="order-content"><%= @order.aisle_four_household_products %></div>
+    </div>
+
+    <div class="order-box">
+      <h4><%= t('helpers.label.order.aisle_five_snacks_pop') %></h4>
+
+      <div class="order-content"><%= @order.aisle_five_snacks_pop %></div>
+    </div>
+
+    <div class="order-box">
+      <h4>Produce</h4><div class="order-content"><%= @order.produce %></div>
+    </div>
+
+    <div class="order-box">
+      <h4>Freezer</h4><div class="order-content"><%= @order.freezer %></div>
+    </div>
+
+    <div class="order-box">
+      <h4>Bakery</h4><div class="order-content"><%= @order.bakery %></div>
+    </div>
+
+    <div class="order-box">
+      <h4><%= t('helpers.label.order.other_medicine_etc') %></h4>
+
+      <div class="order-content"><%= @order.other_medicine_etc %></div>
+    </div>
+
+    <div class="order-box">
+      <h4>Notes</h4><div class="order-content"><%= @order.notes %></div>
+    </div>
+  </div>
+</div>

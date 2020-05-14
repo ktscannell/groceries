@@ -1,11 +1,5 @@
 <h1>New Order</h1>
 
-<% if !!flash[:errors] %>
-  <% flash[:errors].each do |e| %>
-    <p><%= e %></p> <br>
-  <% end %>
-<% end %>
-
 <%= form_with model: @order, local: true do |f| %>
 
   <p>
